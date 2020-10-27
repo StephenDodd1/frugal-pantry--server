@@ -6,6 +6,12 @@ const winston = require("winston");
 
 const app = express();
 
+app.get("/api/*", (req,res) => {
+  res.json({ok: true})
+})
+app.get("*", function (req, res, next) {
+  if (req.url === "/") return next();
+});
 app.get('/', function (req,res,next) {
   res.send('Hello World!')
 })
